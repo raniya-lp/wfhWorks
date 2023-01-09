@@ -1,0 +1,76 @@
+<div>
+    <p style="color:#8f8f8f; font-size: 14px; padding-bottom: 20px; line-height: 1.4;">
+        Hello,<br><br>
+        We are writing to let you know :
+        {% if arguments.products or arguments.updated_products %}
+
+            <ul><li><h4>Products</h4></li>
+            
+                <ul>
+                {% for product in arguments.products %}
+                  <li>{{product.created_at}}:{{product.created_by.first_name}} created a Product
+                  {{product.name}}
+                  <b><a href="{{ origin }}/products/?from_email=true"> Go to the Product</a></b>
+                </li>
+                {% endfor %}
+                </ul> 
+                <ul>
+                {% for product in arguments.updated_products %}
+                  <li>{{product.updated_at}}:{{product.created_by.first_name}} made some changes on Product 
+                  {{product.name}} <b><a href="{{ origin }}/products/?from_email=true"> Go to the Product</a></b> </li>
+                {% endfor %}
+                </ul>
+            </ul>
+        {% endif %}
+        
+        
+
+        {% if arguments.roadmaps or arguments.updated_roadmaps %}
+
+            <ul><li><h4>RoadMaps</h4></li>
+            
+                <ul>
+                {% for roadmap in arguments.roadmaps %}
+                  <li>{{roadmap.created_at}}:{{roadmap.created_by.first_name}} created a RoadMap
+                  {{roadmap.name}} in product <b>{{roadmap.project.name}}</b>
+                  <b><a href="{{ origin }}/roadmaps?from_email=true"> Go to the RoadMap</a></b></li>
+                {% endfor %}
+                </ul> 
+                <ul>
+                {% for roadmap in arguments.updated_roadmaps %}
+                  <li>{{roadmap.updated_at}}:{{roadmap.created_by.first_name}} made some changes on RoadMap 
+                  {{roadmap.name}} in product <b>{{roadmap.project.name}}</b>
+                <b><a href="{{ origin }}/roadmaps?from_email=true"> Go to the RoadMap</a></b></li>
+                {% endfor %}
+                </ul>
+            </ul>
+        {% endif %}
+
+        {% if arguments.features or arguments.updated_features %}
+            
+            <ul><li><h4>RoadMap Features</h4></li>
+            
+                <ul>
+                {% for feature in arguments.features %}
+                  <li>{{feature.created_at}}:{{feature.created_by.first_name}} created a RoadMapFeature
+                  {{feature.name}} in RoadMap <b>{{feature.roadmap.name}}</b> 
+                <b><a href="{{ origin }}/roadmaps/{{feature.roadmap.id}}?pId={{feature.roadmap.project.id}}&project={{feature.roadmap.project.name}}&roadmap={{feature.roadmap.name}}?from_email=true"> Go to the Feature</a></b></li>
+                {% endfor %}
+                </ul> 
+                <ul>
+                {% for feature in arguments.updated_features %}
+                  <li>{{feature.updated_at}}:{{feature.created_by.first_name}} made some changes on RoadMapFeature 
+                  {{feature.name}} in RoadMap <b>{{feature.roadmap.name}}</b> 
+                <b><a href="{{ origin }}/roadmaps/{{feature.roadmap.id}}?pId={{feature.roadmap.project.id}}&project={{feature.roadmap.project.name}}&roadmap={{feature.roadmap.name}}&from_email=true"> Go to the Feature</a></b></li>
+                {% endfor %}
+                </ul>
+            </ul>
+        {% endif %}
+        
+    </p>
+
+    <!-- <div style="text-align: center;padding: 20px">
+        <a href="{{ origin }}" title="Login" target="_blank" style="font-size: 14px; line-height: 1.5; font-weight: 700; letter-spacing: 1px; padding: 15px 40px; text-align:center; text-decoration:none;
+    color:#FFFFFF; border-radius: 50px; background-color:#922c88;">Login Now</a>
+    </div> -->
+</div>

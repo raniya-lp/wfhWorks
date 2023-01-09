@@ -1,0 +1,72 @@
+<div style="margin-top: 20px;">
+    <div>
+<img src="http://alignmentchain-dev.logicplum.com/assets/images/email/sharereport.png" width="" height="" alt="email">
+</div>
+<div style="
+font-family: Roboto;
+font-size: 24px;
+font-style: italic;
+font-weight: 300;
+line-height: 28px;
+letter-spacing: 0.06em;
+text-align: center;
+margin-top: 20px;">
+<span>Hey </span><span style="     font-family: Roboto;
+font-size: 24px;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: 0.06em;
+text-align: center;
+margin-top: 20px;
+color: rgba(100, 23, 104, 1);">{{ fullname }}!</span>
+</div>
+
+<div style="   font-family: Roboto;
+font-size: 16px;
+font-weight: 400;
+line-height: 25px;
+letter-spacing: 0.09em;
+text-align: center;
+padding: 20px;">
+  
+    <span>A report has been shared with you from <br>
+        {{app}} .<br>
+        Please login to view the insights.<br>
+        <!-- Your temporary password : Rfy@456 -->
+    </span>
+{% if message %}
+<div style="display: flex;  justify-content: center;">
+    <hr style="border: none; width: 90%; background: #BDBDBD; justify-content: center; margin-top: 30px; height: 1px;">
+</div>
+
+<div style="font-family: Roboto; color: rgba(0, 0, 0,.5); margin-top:20px; text-transform: capitalize; font-family: 'Gilroy-Medium'; font-size: 12px; line-height: 125%; text-align: center;letter-spacing: 0.02em;">
+    <p><q style="color: purple"> <span  style="font-family: Roboto; color: rgba(0, 0, 0,.5);">{{ message }}</span></q></p>
+</div>
+<div style="display: flex;  justify-content: center;">
+    <hr style="border: none; width: 90%; background: #BDBDBD; justify-content: center; margin-top: 30px; height: 1px;">
+</div>
+{% endif %}
+
+
+</div> 
+</div>
+<div >
+    <a href="{{ url }}" title="View report">
+    <button  style="font-family: 'Roboto', sans-serif;          padding: 15px;
+    border-radius: 40px;
+    background-color: rgba(34, 148, 94, 1);
+    color: white;
+    margin-top: 30px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 17px;
+    letter-spacing: 2px;
+    text-align: left;
+    border: none;
+    cursor: pointer;">VIEW REPORT</button>
+    </a>
+</div>
+<br>
+<br>
+<br>

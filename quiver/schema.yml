@@ -1,0 +1,2036 @@
+openapi: 3.0.3
+info:
+  title: RoadmapLive
+  version: 1.0.0
+  description: APIs for RoadmapLive
+paths:
+  /api/schema/:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/organization/:
+    get:
+      operationId: api_v1_organization_list
+      description: |-
+        Lists all organizations
+
+        @TODO: Add pagination
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationResponse'
+          description: ''
+    post:
+      operationId: api_v1_organization_create
+      description: |-
+        Creates an account for Organization Admin
+
+        Params:
+        -------
+                first_name : first_name of the user.
+                last_name  : last_name of the user.
+                email      : email of the user.
+                name       : name of the organization.
+                phone      : phone number of the user.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganisationCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrganisationCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrganisationCreate'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/organization/{id}/:
+    get:
+      operationId: api_v1_organization_retrieve
+      description: APIs to create,retrieve,update and delete organization
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this organization.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationResponse'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+    put:
+      operationId: api_v1_organization_update
+      description: APIs to create,retrieve,update and delete organization
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this organization.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdate'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationResponse'
+          description: ''
+    delete:
+      operationId: api_v1_organization_destroy
+      description: APIs to create,retrieve,update and delete organization
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this organization.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/patterns/:
+    get:
+      operationId: api_v1_patterns_list
+      description: |-
+        Lists all ScheduleGroups
+
+        @TODO: Add pagination
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PatternList'
+          description: ''
+    post:
+      operationId: api_v1_patterns_create
+      description: Create patterns
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatternCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatternCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatternCreate'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatternCreate'
+          description: ''
+  /api/v1/patterns/{id}/:
+    put:
+      operationId: api_v1_patterns_update
+      description: 'Update patterns, section, subsection '
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatternUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatternUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatternUpdate'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+    delete:
+      operationId: api_v1_patterns_destroy
+      description: Delete patterns
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/projects/:
+    get:
+      operationId: api_v1_projects_list
+      description: Lists all projects
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectList'
+          description: ''
+    post:
+      operationId: api_v1_projects_create
+      description: Create projects
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/projects/{id}/:
+    put:
+      operationId: api_v1_projects_update
+      description: APIs to create,retrieve,update and delete projects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+    delete:
+      operationId: api_v1_projects_destroy
+      description: APIs to create,retrieve,update and delete projects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/projects/feature/bulk_update/:
+    put:
+      operationId: api_v1_projects_feature_bulk_update_update
+      description: API for update order of features
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/projects/feature/order/:
+    post:
+      operationId: api_v1_projects_feature_order_create
+      description: API for update order of features
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/projects/list/:
+    get:
+      operationId: api_v1_projects_list_retrieve
+      description: Lists all projects
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/projects/roadmap/{id}/:
+    get:
+      operationId: api_v1_projects_roadmap_retrieve
+      description: API for list create update and delte roadmap.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoadMapList'
+          description: ''
+    post:
+      operationId: api_v1_projects_roadmap_create
+      description: API for list create update and delte roadmap.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadMapList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RoadMapList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RoadMapList'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoadMapList'
+          description: ''
+    put:
+      operationId: api_v1_projects_roadmap_update
+      description: API for list create update and delte roadmap.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadMapList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RoadMapList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RoadMapList'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoadMapList'
+          description: ''
+    delete:
+      operationId: api_v1_projects_roadmap_destroy
+      description: API for list create update and delte roadmap.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/projects/roadmap_feature/{id}/:
+    get:
+      operationId: api_v1_projects_roadmap_feature_retrieve
+      description: API for list create update and delte roadmap features
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoadMapFeatureList'
+          description: ''
+    post:
+      operationId: api_v1_projects_roadmap_feature_create
+      description: API for list create update and delte roadmap features
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadMapFeatureList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RoadMapFeatureList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RoadMapFeatureList'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoadMapFeatureList'
+          description: ''
+    put:
+      operationId: api_v1_projects_roadmap_feature_update
+      description: API for list create update and delte roadmap features
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadMapFeatureList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RoadMapFeatureList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RoadMapFeatureList'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoadMapFeatureList'
+          description: ''
+    delete:
+      operationId: api_v1_projects_roadmap_feature_destroy
+      description: API for list create update and delte roadmap features
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/user/:
+    get:
+      operationId: api_v1_user_list
+      description: |-
+        Lists all Users
+        @TODO: Add pagination
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserInfoModel'
+          description: ''
+    post:
+      operationId: api_v1_user_create
+      description: |-
+        Creating users for organizations
+        - API allowed by super admins or organizational admins only
+        - If an organizational admin try to create a user in another organization,
+           - Returns 403
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/user/{id}/:
+    put:
+      operationId: api_v1_user_update
+      description: |-
+        Updating a user_id
+        - if SuperAdmin:
+           - Update role, org, fname, lname, phone
+        - else if OrganizationAdmin:
+           - Check if org_id and current_org_id match
+           - Check if user_id is in current organization
+           - Cannot modify other organizations
+           - Update role, fname, lname, phone
+        - else:
+           - Check if org_id and current_org_id match
+           - Check modify other users
+           - Cannot change organization, role
+           - Update fname, lname, phone
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationUser'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+    delete:
+      operationId: api_v1_user_destroy
+      description: ''
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/user/login:
+    post:
+      operationId: api_v1_user_login_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/v1/user/logout:
+    post:
+      operationId: api_v1_user_logout_create
+      description: |-
+        Logout an user account.
+        Args:
+            request (Request): request contains the refresh token.
+
+        Returns:
+            Response: status of the logout API.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutRequest'
+          description: ''
+  /api/v1/user/options/:
+    get:
+      operationId: api_v1_user_options_retrieve
+      description: Necessary data for user creation
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/user/refresh:
+    post:
+      operationId: api_v1_user_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/v1/user/user/activity:
+    get:
+      operationId: api_v1_user_user_activity_retrieve
+      description: ''
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/user/admin-details-update/{id}/:
+    post:
+      operationId: api_v1_user_user_admin_details_update_create
+      description: API to update admin details
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAdmins'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateAdmins'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateAdmins'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/user/user/admin-list:
+    get:
+      operationId: api_v1_user_user_admin_list_retrieve
+      description: ''
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/user/change-password:
+    post:
+      operationId: api_v1_user_user_change_password_create
+      description: |-
+        Replaces the current password with new password
+
+        Params:
+        -------
+        old_password: str
+            old_password is the current password of the user account.
+        new_password: str
+            new_password is the new password to be set to the user account.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/user/user/feedback:
+    get:
+      operationId: api_v1_user_user_feedback_retrieve
+      description: API for list create update and delte roadmap.
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+    post:
+      operationId: api_v1_user_user_feedback_create
+      description: API for list create update and delte roadmap.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+  /api/v1/user/user/feedback/{id}/:
+    get:
+      operationId: api_v1_user_user_feedback_retrieve_2
+      description: ''
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: api_v1_user_user_feedback_destroy
+      description: ''
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/user/user/notification:
+    get:
+      operationId: api_v1_user_user_notification_retrieve
+      description: ''
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/user/profile/info:
+    get:
+      operationId: api_v1_user_user_profile_info_list
+      description: API to update user profile. If if_staff in response is true, then
+        its a superuser
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserInfoModel'
+          description: ''
+  /api/v1/user/user/reset-password:
+    post:
+      operationId: api_v1_user_user_reset_password_create
+      description: |-
+        Sends password reset email to the user.
+
+        ------
+        Params
+        ------
+                email : Email of the user whose password to be resetted.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Email'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Email'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Email'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/user/user/reset-password/confirm:
+    post:
+      operationId: api_v1_user_user_reset_password_confirm_create
+      description: |-
+        Resets a new password through the forgot-password link.
+        ------
+        Params
+        ------
+                key      : key is the auth key retrieved from the reset-password email.
+
+                password : password is the new password to be set to the user account.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/KeyPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/KeyPassword'
+        required: true
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/v1/user/users/app-access-list:
+    get:
+      operationId: api_v1_user_users_app_access_list_retrieve
+      description: ''
+      tags:
+      - api
+      security:
+      - basicAuth: []
+      - cookieAuth: []
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    ChangePassword:
+      type: object
+      properties:
+        old_password:
+          type: string
+          maxLength: 30
+          minLength: 8
+        new_password:
+          type: string
+          maxLength: 30
+          minLength: 8
+      required:
+      - new_password
+      - old_password
+    CreateUser:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 100
+          minLength: 8
+        first_name:
+          type: string
+          maxLength: 50
+          minLength: 2
+        last_name:
+          type: string
+          maxLength: 50
+          minLength: 1
+        phone:
+          type: integer
+          maximum: 9999999999
+          minimum: 1000000000
+          format: int64
+          nullable: true
+        role:
+          type: string
+        organization:
+          type: string
+          format: uuid
+        roadmap_access:
+          type: boolean
+          default: false
+        pattern_access:
+          type: boolean
+          default: false
+      required:
+      - email
+      - first_name
+      - last_name
+      - role
+    Email:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 100
+          minLength: 8
+      required:
+      - email
+    Feedback:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        subject:
+          type: string
+          nullable: true
+          maxLength: 20
+        description:
+          type: string
+          nullable: true
+        is_visible:
+          type: boolean
+      required:
+      - id
+    KeyPassword:
+      type: object
+      properties:
+        key:
+          type: string
+          maxLength: 300
+          minLength: 100
+        password:
+          type: string
+          maxLength: 30
+          minLength: 8
+      required:
+      - key
+      - password
+    LogoutRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          maxLength: 300
+          minLength: 100
+      required:
+      - refresh
+    OrganisationCreate:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 100
+          minLength: 8
+        first_name:
+          type: string
+          maxLength: 50
+          minLength: 2
+        last_name:
+          type: string
+          maxLength: 50
+          minLength: 1
+        phone:
+          type: integer
+          maximum: 9999999999
+          minimum: 1000000000
+          format: int64
+          nullable: true
+        name:
+          type: string
+          maxLength: 50
+          minLength: 3
+        roadmap_access:
+          type: boolean
+          default: false
+        pattern_access:
+          type: boolean
+          default: false
+        project_list:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+      - email
+      - first_name
+      - last_name
+      - name
+      - project_list
+    OrganizationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        created_by:
+          type: integer
+      required:
+      - created_at
+      - created_by
+      - id
+      - name
+      - updated_at
+    OrganizationUpdate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - id
+      - name
+    PatternCreate:
+      type: object
+      properties:
+        project_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          maxLength: 100
+          minLength: 3
+        description:
+          type: string
+          minLength: 1
+        pattern_section:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatternSectionCreate'
+      required:
+      - pattern_section
+      - project_id
+      - title
+    PatternList:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 50
+        created_by_name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        project:
+          type: string
+          format: uuid
+        project_name:
+          type: string
+        pattern_section:
+          type: string
+          readOnly: true
+      required:
+      - created_by_name
+      - id
+      - pattern_section
+      - project
+      - project_name
+      - title
+    PatternSectionCreate:
+      type: object
+      properties:
+        section:
+          type: string
+          maxLength: 100
+          minLength: 3
+        has_sub_section:
+          type: boolean
+        section_type:
+          type: string
+          maxLength: 100
+          minLength: 3
+        data:
+          type: array
+          items: {}
+        sub_section_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatternSectionSubCreate'
+      required:
+      - section
+      - section_type
+    PatternSectionSubCreate:
+      type: object
+      properties:
+        sub_section:
+          type: string
+          maxLength: 100
+          minLength: 3
+        data:
+          type: array
+          items: {}
+      required:
+      - data
+      - sub_section
+    PatternUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 100
+          minLength: 3
+        description:
+          type: string
+          minLength: 1
+        pattern_section_id:
+          type: string
+          format: uuid
+        pattern_section:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatternSectionCreate'
+      required:
+      - pattern_section
+      - pattern_section_id
+      - title
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        status:
+          $ref: '#/components/schemas/ProjectStatusEnum'
+      required:
+      - id
+      - name
+    ProjectCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+          minLength: 3
+        status:
+          type: string
+          maxLength: 10
+          minLength: 3
+      required:
+      - name
+    ProjectList:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        organization:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+      required:
+      - id
+      - name
+      - organization
+      - status
+    ProjectStatusEnum:
+      enum:
+      - active
+      - archive
+      type: string
+    RoadMapFeatureList:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 500
+        roadmap:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        reach:
+          type: number
+          format: float
+        impact:
+          type: number
+          format: float
+        confidence:
+          type: number
+          format: float
+        effort:
+          type: number
+          format: float
+        rice_score:
+          type: number
+          format: float
+        status:
+          $ref: '#/components/schemas/RoadMapFeatureListStatusEnum'
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - id
+      - name
+      - roadmap
+      - updated_at
+    RoadMapFeatureListStatusEnum:
+      enum:
+      - active
+      - archive
+      - complete
+      type: string
+    RoadMapList:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 500
+        projects:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        description:
+          type: string
+          maxLength: 800
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        collaborator:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        created_by:
+          type: integer
+      required:
+      - collaborator
+      - created_at
+      - created_by
+      - description
+      - id
+      - name
+      - projects
+      - updated_at
+    TokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - password
+      - refresh
+      - username
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    UpdateAdmins:
+      type: object
+      properties:
+        organization:
+          type: string
+          format: uuid
+        first_name:
+          type: string
+          maxLength: 50
+          minLength: 2
+        last_name:
+          type: string
+          maxLength: 50
+          minLength: 1
+        email:
+          type: string
+          format: email
+          maxLength: 50
+          minLength: 1
+        phone:
+          type: integer
+          maximum: 9999999999
+          minimum: 1000000000
+          format: int64
+          nullable: true
+        roadmap_access:
+          type: boolean
+          default: false
+        pattern_access:
+          type: boolean
+          default: false
+        project_list:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+      - email
+      - first_name
+      - last_name
+      - project_list
+    UpdateOrganizationUser:
+      type: object
+      properties:
+        role:
+          type: string
+        organization:
+          type: string
+          format: uuid
+        first_name:
+          type: string
+          maxLength: 50
+          minLength: 2
+        last_name:
+          type: string
+          maxLength: 50
+          minLength: 1
+        phone:
+          type: integer
+          maximum: 9999999999
+          minimum: 1000000000
+          format: int64
+          nullable: true
+      required:
+      - first_name
+      - last_name
+      - role
+    UserInfoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+        organization:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        phone:
+          type: string
+          readOnly: true
+      required:
+      - email
+      - id
+      - organization
+      - phone
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: Session
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: Bearer

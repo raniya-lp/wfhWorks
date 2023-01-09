@@ -1,0 +1,81 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+      <style>
+        body{
+          font-family: arial, sans-serif;
+        }
+        table {
+   
+    border-collapse: collapse;
+    width: 100%;
+}
+h1{
+  font-size: 36px;
+}
+th{
+  background-color: #4287f5;
+  text-align: center !important;
+  color: #fff;
+  font-weight: 700;
+  padding: 8px;
+  border: 1px solid #eee;
+}
+td {
+    border: 1px solid #eee;
+    text-align: left;
+    padding: 8px;
+}
+li{
+  padding: 5px;
+}
+tr:nth-child(even) {
+    background-color: #eee;
+}
+p{
+  padding: 5px 0px;
+}
+      </style>
+
+  </head>
+  <body class="hold-transition sidebar-mini">
+  <!-- Site wrapper -->
+  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
+  <h1>{{project_name}} Development - Week of {{report_date}}</h1>
+  <p>This artifact represents the status of the LogicPlum development of the {{project_name}} Platform of the stated date. </p>
+  <ul>
+  <li>Closed refers to what has been completed.</li>
+<li>Active refers to ongoing items.</li>
+<li>New refers to upcoming scheduled work.</li>
+</ul>
+
+  <p>NOTE: FE = Frontend, BE = Backend, CI/CD = Continuous Integration/Continuous Development, API = Application Programming Interface, UI = User Interface</p>
+  
+  {% for item in items %}
+  <p style="page-break-after: always;">&nbsp;</p>
+<p style="page-break-before: always;">&nbsp;</p>
+  <h2>{{item.title}}</h2><br>
+  <table>
+    <tr>
+        {% for col in item.column_names %}
+        <th>{{col}}</th>
+        {% endfor %}
+    </tr>
+    {% for row in item.row_data %}
+    <tr>
+        {% for col, row_ in zip(item.column_names, row) %}
+        
+        <td>{{row_}}</td>
+        
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endfor %}
+  </body>
+  </html>

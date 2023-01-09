@@ -1,0 +1,214 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>LogicPlum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        @font-face {
+            font-family: Roboto;
+            src: url(https://quiver-dev.logicplum.com/assets/emailTemplate/Roboto/Roboto-Regular.ttf);
+        }
+
+        .header {
+            background-color: #470F4A;
+            width: 100%;
+            height: 92px;
+
+        }
+
+        .header img {
+            margin: 9px 0 0 22px;
+
+        }
+
+        .emailContent {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .greetings {
+
+            font-family: Roboto;
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 28px;
+            letter-spacing: 0.06em;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .userName {
+            font-family: Roboto;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 28px;
+            letter-spacing: 0.06em;
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(100, 23, 104, 1);
+
+
+        }
+
+        .emailDetails {
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 25px;
+            letter-spacing: 0.09em;
+            text-align: center;
+            padding: 20px;
+
+        }
+
+        .activate-btn button {
+            padding: 15px;
+            border-radius: 40px;
+            background-color: #641768;
+            color: white;
+            margin-top: 30px;
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 17px;
+            letter-spacing: 2px;
+            text-align: left;
+
+        }
+
+        .context-team {
+            margin-top: 60px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            background: rgba(238, 238, 238, 0.5);
+            width: 100%;
+            /* height: 92px; */
+
+        }
+
+        .footer .text1 {
+            font-family: Roboto;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 0.16em;
+            text-align: center;
+
+
+        }
+
+        .footer .text2 {
+            font-family: Roboto;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 0em;
+            text-align: center;
+            margin-top: 20px;
+            color: #979797;
+        }
+
+        .footer .text3 {
+            font-family: Roboto;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 0em;
+            text-align: center;
+
+            color: #979797;
+        }
+
+        .text3 span {
+            color: #96209C;
+
+        }
+    </style>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+    <div leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"
+        style="height:auto !important;width:100% !important; font-family: Helvetica,Arial,sans-serif !important; margin-bottom: 40px;padding-top:40px; background:#f1f1f1">
+        <center>
+            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0"
+                style="max-width:600px; background-color:#ffffff;border:1px solid #e4e2e2;border-collapse:separate !important; border-radius:4px;border-spacing:0;color:#242128; margin:0;"
+                heigth="auto">
+                <tbody>
+                    <tr style="background-color:#470F4A;">
+                        <td align="left" valign="center"
+                            style="padding-bottom:40px;border-top:0;height:100% !important;width:100% !important;">
+                            <img src="https://quiver-dev.logicplum.com/assets/emailTemplate/img/logo.svg" 
+                               >
+                        </td>
+                        <td align="right" valign="center"
+                            style="padding-bottom:40px;border-top:0;height:100% !important;width:100% !important;">
+                            <span style="color: #8f8f8f; font-weight: normal; line-height: 2; font-size: 14px;"> </span>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td colspan="2" style="padding-top:10px;border-top:1px solid #e4e2e2">
+                            <div style="margin-top: 20px;">
+                                         <div>
+                                <img src="https://quiver-dev.logicplum.com/assets/emailTemplate/img/emailtemp.svg" width="" height="" alt="email">
+                            </div>
+                            {{content}}
+                            <div class="context-team">
+                                <img src="https://quiver-dev.logicplum.com/assets/emailTemplate/img/context team.svg" alt="context team">
+                            </div>
+                
+                            <div class="footer">
+                                <div style="padding:20px 0px;">
+                                    <div class="text1">
+                                        ©2022 LogicPlum,Inc. All rights reserved.
+                                    </div>
+                                    <span class="text2">
+                                        You are receiving this email because you had signed up for an account on LogicPlum Context.
+                                    </span>
+                
+                                    <div class="text3">
+                                        Click here to <span> Unsubscribe</span> from this reminder
+                                    </div>
+                                </div>
+                
+                            </div>
+                  
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table style="margin-top:30px; padding-bottom:20px; margin-bottom: 40px;">
+                <tbody>
+                    <tr>
+                        <td align="center" valign="center">
+                            <img src="https://quiver-dev.logicplum.com/assets/emailTemplate/img/lplogo.svg" alt="context team">
+                            <p
+                                style="font-size: 12px; text-decoration: none; line-height: 1; color:#909090; margin-top:15px; margin-bottom:5px;">
+                                LogicPlum, 1550 West McEwen Drive, Suite 300, Franklin, TN – 37067
+                            </p>
+                            <p
+                                style="font-size: 12px; line-height:1; color:#909090;  margin-top:15px; margin-bottom:5px;">
+                                <a href="http://logicplum.com/privacy-policy/"
+                                    style="color: #922c88; text-decoration:none;" target="_blank">Privacy
+                                    Policy</a>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+[
+    {
+        "model": "context.canvastype",
+        "fields": {
+            "id": 1,
+            "name": "Design Criteria Canvas"
+        }
+    },
+    {
+        "model": "context.canvastype",
+        "fields": {
+            "id": 2,
+            "name": "Business Model Canvas"
+        }
+    },
+    {
+        "model": "context.canvastype",
+        "fields": {
+            "id": 3,
+            "name": "Persona Canvas"
+        }
+    },
+    {
+        "model": "context.canvastype",
+        "fields": {
+            "id": 4,
+            "name": "Customer Journey Canvas"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 1,
+            "canvas_type":1,
+            "name": "Must have"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 2,
+            "canvas_type":1,
+            "name": "Should have features"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 3,
+            "canvas_type":1,
+            "name": "Could have features"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 4,
+            "canvas_type":1,
+            "name": "Won't have features"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 5,
+            "canvas_type":2,
+            "name": "Customer segments"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 6,
+            "canvas_type":2,
+            "name": "Value proposition"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 7,
+            "canvas_type":2,
+            "name": "Revenue streams"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 8,
+            "canvas_type":2,
+            "name": "Channels"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 9,
+            "canvas_type":2,
+            "name": "Customer relationships"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 10,
+            "canvas_type":2,
+            "name": "Key activities"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 11,
+            "canvas_type":2,
+            "name": "Key resources"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 12,
+            "canvas_type":2,
+            "name": "Key partners"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 12,
+            "canvas_type":2,
+            "name": "Cost structure"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 13,
+            "canvas_type":3,
+            "name": "Name,role/occupation"
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 14,
+            "canvas_type":3,
+            "name": "Outlines"
+            
+        }
+    },
+
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 16,
+            "canvas_type":3,
+            "name": "Need"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 17,
+            "canvas_type":3,
+            "name": "Positive trends"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 18,
+            "canvas_type":3,
+            "name": "Opportunities"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 19,
+            "canvas_type":3,
+            "name": "Hopes"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 20,
+            "canvas_type":3,
+            "name": "Negative trends"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 21,
+            "canvas_type":3,
+            "name": "Headaches"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 22,
+            "canvas_type":3,
+            "name": "Fears"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 23,
+            "canvas_type":4,
+            "name": "Persona"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 24,
+            "canvas_type":4,
+            "name": "Customer needs"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 25,
+            "canvas_type":4,
+            "name": "Timeline and key moments"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 26,
+            "canvas_type":4,
+            "name": "Touch points"
+            
+        }
+    },
+    {
+        "model": "context.Priority",
+        "fields": {
+            "id": 27,
+            "canvas_type":4,
+            "name": "Mood"
+            
+        }
+    }
+
+]
